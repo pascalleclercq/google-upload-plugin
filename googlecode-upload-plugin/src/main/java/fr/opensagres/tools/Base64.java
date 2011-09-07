@@ -867,7 +867,7 @@ public class Base64
 
         if( off + len > source.length  ){
             throw new IllegalArgumentException(
-            String.format( "Cannot have offset of %d and length of %d with array of length %d", off,len,source.length));
+             "Cannot have offset of "+off+" and length of "+len+" with array of length "+source.length);
         }   // end if: off < 0
 
 
@@ -986,12 +986,12 @@ public class Base64
             throw new NullPointerException( "Destination array was null." );
         }   // end if
         if( srcOffset < 0 || srcOffset + 3 >= source.length ){
-            throw new IllegalArgumentException( String.format(
-            "Source array with length %d cannot have offset of %d and still process four bytes.", source.length, srcOffset ) );
+            throw new IllegalArgumentException( 
+            "Source array with length "+source.length+" cannot have offset of "+srcOffset+" and still process four bytes." );
         }   // end if
         if( destOffset < 0 || destOffset +2 >= destination.length ){
-            throw new IllegalArgumentException( String.format(
-            "Destination array with length %d cannot have offset of %d and still store three bytes.", destination.length, destOffset ) );
+            throw new IllegalArgumentException( 
+            "Destination array with length "+destination.length+" cannot have offset of "+destOffset+" and still store three bytes." );
         }   // end if
         
         
@@ -1099,8 +1099,8 @@ public class Base64
             throw new NullPointerException( "Cannot decode null source array." );
         }   // end if
         if( off < 0 || off + len > source.length ){
-            throw new IllegalArgumentException( String.format(
-            "Source array with length %d cannot have offset of %d and process %d bytes.", source.length, off, len ) );
+            throw new IllegalArgumentException( 
+            "Source array with length "+source.length+" cannot have offset of "+off+" and process "+len+" bytes." );
         }   // end if
         
         if( len == 0 ){
@@ -1146,8 +1146,8 @@ public class Base64
             }   // end if: white space, equals sign or better
             else {
                 // There's a bad input character in the Base64 stream.
-                throw new java.io.IOException( String.format(
-                "Bad Base64 input character '%c' in array position %d", source[i], i ) );
+                throw new java.io.IOException( 
+                "Bad Base64 input character '"+source[i]+"' in array position "+i  );
             }   // end else: 
         }   // each input character
                                    
@@ -1551,7 +1551,7 @@ public class Base64
         private int     lineLength;
         private boolean breakLines;     // Break lines at less than 80 characters
         private int     options;        // Record options used to create the stream.
-        private byte[]  alphabet;       // Local copies to avoid extra method calls
+        //private byte[]  alphabet;       // Local copies to avoid extra method calls
         private byte[]  decodabet;      // Local copies to avoid extra method calls
         
         
@@ -1596,7 +1596,7 @@ public class Base64
             this.buffer       = new byte[ bufferLength ];
             this.position     = -1;
             this.lineLength   = 0;
-            this.alphabet     = getAlphabet(options);
+          //  this.alphabet     = getAlphabet(options);
             this.decodabet    = getDecodabet(options);
         }   // end constructor
         
@@ -1607,7 +1607,6 @@ public class Base64
          * @return next byte
          * @since 1.3
          */
-        @Override
         public int read() throws java.io.IOException  {
             
             // Do we need to get data?
@@ -1716,7 +1715,6 @@ public class Base64
          * @return bytes read into array or -1 if end of stream is encountered.
          * @since 1.3
          */
-        @Override
         public int read( byte[] dest, int off, int len ) 
         throws java.io.IOException {
             int i;
@@ -1767,7 +1765,7 @@ public class Base64
         private byte[]  b4;         // Scratch used in a few places
         private boolean suspendEncoding;
         private int     options;    // Record for later
-        private byte[]  alphabet;   // Local copies to avoid extra method calls
+        //private byte[]  alphabet;   // Local copies to avoid extra method calls
         private byte[]  decodabet;  // Local copies to avoid extra method calls
         
         /**
@@ -1811,7 +1809,7 @@ public class Base64
             this.suspendEncoding = false;
             this.b4           = new byte[4];
             this.options      = options;
-            this.alphabet     = getAlphabet(options);
+       //     this.alphabet     = getAlphabet(options);
             this.decodabet    = getDecodabet(options);
         }   // end constructor
         
@@ -1828,7 +1826,6 @@ public class Base64
          * @param theByte the byte to write
          * @since 1.3
          */
-        @Override
         public void write(int theByte) 
         throws java.io.IOException {
             // Encoding suspended?
@@ -1883,7 +1880,6 @@ public class Base64
          * @param len max number of bytes to read into array
          * @since 1.3
          */
-        @Override
         public void write( byte[] theBytes, int off, int len ) 
         throws java.io.IOException {
             // Encoding suspended?
@@ -1923,7 +1919,6 @@ public class Base64
          * @throws java.io.IOException
          * @since 2.3
          */
-        @Override
         public void flush() throws java.io.IOException {
             flushBase64();
             super.flush();
@@ -1934,7 +1929,6 @@ public class Base64
          *
          * @since 1.3
          */
-        @Override
         public void close() throws java.io.IOException {
             // 1. Ensure that pending characters are written
             flush();
