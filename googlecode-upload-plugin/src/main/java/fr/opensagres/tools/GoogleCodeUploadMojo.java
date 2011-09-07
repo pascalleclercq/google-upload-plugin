@@ -176,7 +176,7 @@ public class GoogleCodeUploadMojo extends AbstractMojo {
 			log("The upload URL is " + url);
 
 			InputStream in = new BufferedInputStream(new FileInputStream(
-					fileName));
+					targetFileName));
 
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
