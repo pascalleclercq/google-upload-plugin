@@ -133,7 +133,7 @@
 		</plugins>
 	</build>
 	<scm>
-		<connection>git@github.com:pascalleclercq/google-upload-plugin.git</connection>
-		<developerConnection>git@github.com:pascalleclercq/google-upload-plugin.git</developerConnection>
+		<connection>scm:git:git@github.com:pascalleclercq/google-upload-plugin.git</connection>
+		<developerConnection>scm:git:git@github.com:pascalleclercq/google-upload-plugin.git</developerConnection>
 	</scm>
 </project>
